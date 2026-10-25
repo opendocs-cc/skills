@@ -1,7 +1,7 @@
 {
   "name": "opendocs",
   "displayName": "OpenDocs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Publish Markdown from your agent to shareable links, and export it as branded PDF or Word files. Sign up from the terminal with an emailed code; free for up to 50 documents.",
   "author": {
     "name": "OpenDocs",
@@ -11,7 +11,15 @@
   "homepage": "https://opendocs.cc",
   "repository": "https://github.com/opendocs-cc/skills",
   "license": "MIT",
-  "keywords": ["markdown", "publishing", "pdf", "docx", "documents", "sharing", "export"],
+  "keywords": [
+    "markdown",
+    "publishing",
+    "pdf",
+    "docx",
+    "documents",
+    "sharing",
+    "export"
+  ],
   "icon": "./logo.png",
   "documentationUrl": "https://docs.opendocs.cc",
   "supportUrl": "https://opendocs.cc/faq",
