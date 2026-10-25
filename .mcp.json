@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "opendocs": {
+      "type": "http",
+      "url": "https://mcp.opendocs.cc/mcp"
+    }
+  }
+}

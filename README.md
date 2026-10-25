@@ -13,7 +13,7 @@ Free for up to 50 documents. See [pricing](https://opendocs.cc/pricing).
 
 ## Install
 
-**Claude Code** (plugin, with `/opendocs:publish` and `/opendocs:export`):
+**Claude Code** (plugin, with `/opendocs:publish`, `/opendocs:export` and the OpenDocs MCP server):
 
 ```text
 /plugin marketplace add opendocs-cc/skills
@@ -34,6 +34,8 @@ curl -fsSL https://opendocs.cc/install.sh | bash
 
 The full CLI is on npm: `npm install -g @opendocs.cc/cli` ([source](https://github.com/opendocs-cc/opendocs-cli)).
 
+**Claude, ChatGPT and other AI apps (MCP):** add `https://mcp.opendocs.cc/mcp` as a connector and sign in with your OpenDocs account. Setup for every app: [opendocs.cc/mcp](https://opendocs.cc/mcp).
+
 ## Try it
 
 Ask your agent:
@@ -49,15 +51,16 @@ Ask your agent:
 | `skills/opendocs/SKILL.md` | The skill: how an agent signs up, publishes, updates, shares and exports |
 | `skills/opendocs/scripts/opendocs.sh` | A `curl` + `jq` client for machines without Node.js |
 | `commands/` | The Claude Code slash commands |
+| `.mcp.json` | The OpenDocs MCP server (`https://mcp.opendocs.cc/mcp`), which Claude Code connects to with your OpenDocs sign-in |
 | `.claude-plugin/` | Plugin and marketplace manifests |
 
 The skill is synced every day from [opendocs.cc/skill.md](https://opendocs.cc/skill.md), which is published from the [CLI repository](https://github.com/opendocs-cc/opendocs-cli/blob/main/agent/SKILL.md). Send changes there.
 
 ## Data and privacy
 
-The plugin is instructions plus the `opendocs` command-line tools; it doesn't run anything in the background. When you ask your agent to use it:
+The plugin is instructions plus the `opendocs` command-line tools and a connection to the OpenDocs MCP server; it doesn't run anything in the background. When you ask your agent to use it:
 
-- **What's sent, and where:** the Markdown documents you publish or export, and your email address when you sign in (to receive a sign-in code), go to OpenDocs at `api.opendocs.cc`. Nothing is sent to any other service.
+- **What's sent, and where:** the Markdown documents you publish or export, and your email address when you sign in (to receive a sign-in code), go to OpenDocs at `api.opendocs.cc` (or, through MCP, `mcp.opendocs.cc`). Nothing is sent to any other service.
 - **What's stored on your machine:** an OpenDocs API key and your account and workspace details, in the CLI's config file (`~/.config/opendocs/config.json`), plus a `.opendocs/state.json` file in folders you publish from, so publishing again updates the same document.
 - **What OpenDocs keeps:** your documents and their versions, until you delete them (anonymous documents are deleted after 24 hours). See the [privacy policy](https://opendocs.cc/privacy).
 - **Who can see it:** documents are visible to your workspace by default. The skill asks before making anything public.
