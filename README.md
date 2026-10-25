@@ -1,0 +1,62 @@
+# OpenDocs skill and Claude Code plugin
+
+[OpenDocs](https://opendocs.cc) gives your AI agent somewhere to put its Markdown: a clean link your team can read, and a PDF or Word file in your brand. This repository holds the OpenDocs agent skill and a Claude Code plugin around it.
+
+What your agent can do once it's installed:
+
+- **Sign you up from the terminal** with an emailed 6-digit code. No API keys to copy.
+- **Publish** a Markdown file and hand you a link. Publishing the same file again updates the same link, with version history.
+- **Export** to PDF or Word with your logo, brand color and font.
+- **Share** with people outside your workspace, organize documents into projects, and save to Google Drive or send for e-signature (Pro and Team).
+
+Free for up to 50 documents. See [pricing](https://opendocs.cc/pricing).
+
+## Install
+
+**Claude Code** (plugin, with `/opendocs:publish` and `/opendocs:export`):
+
+```text
+/plugin marketplace add opendocs-cc/skills
+/plugin install opendocs@opendocs
+```
+
+**Any agent that reads skills** (Claude Code, Codex, Cursor, OpenClaw and others), with the [skills CLI](https://skills.sh):
+
+```bash
+npx skills add opendocs-cc/skills --skill opendocs -g -y
+```
+
+**No Node.js:** installs the skill plus a small `curl` + `jq` client:
+
+```bash
+curl -fsSL https://opendocs.cc/install.sh | bash
+```
+
+The full CLI is on npm: `npm install -g @opendocs.cc/cli` ([source](https://github.com/opendocs-cc/opendocs-cli)).
+
+## Try it
+
+Ask your agent:
+
+- "Publish this plan to OpenDocs and give me the link."
+- "Export the board report as a PDF."
+- "Publish everything in ./docs into a project called Launch."
+
+## What's here
+
+| Path | What it is |
+| --- | --- |
+| `skills/opendocs/SKILL.md` | The skill: how an agent signs up, publishes, updates, shares and exports |
+| `skills/opendocs/scripts/opendocs.sh` | A `curl` + `jq` client for machines without Node.js |
+| `commands/` | The Claude Code slash commands |
+| `.claude-plugin/` | Plugin and marketplace manifests |
+
+The skill is synced every day from [opendocs.cc/skill.md](https://opendocs.cc/skill.md), which is published from the [CLI repository](https://github.com/opendocs-cc/opendocs-cli/blob/main/agent/SKILL.md). Send changes there.
+
+## Links
+
+- Docs: [docs.opendocs.cc](https://docs.opendocs.cc)
+- Privacy: [opendocs.cc/privacy](https://opendocs.cc/privacy) · Terms: [opendocs.cc/terms](https://opendocs.cc/terms)
+- Questions: [hello@opendocs.cc](mailto:hello@opendocs.cc)
+
+MIT licensed.

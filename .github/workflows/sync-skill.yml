@@ -1,0 +1,46 @@
+# Keeps skills/opendocs in step with the skill opendocs.cc serves (which is
+# published from the CLI repository's agent/SKILL.md). When it changes, the
+# plugin's patch version goes up so Claude Code installs pick up the update.
+name: Sync skill from opendocs.cc
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download the published skill
+        run: |
+          set -euo pipefail
+          base=https://opendocs.cc/.well-known/agent-skills/opendocs
+          curl -fsSL "$base/SKILL.md" -o /tmp/SKILL.md
+          curl -fsSL "$base/scripts/opendocs.sh" -o /tmp/opendocs.sh
+          # Don't commit an error page: both files must look like what they are.
+          head -n 3 /tmp/SKILL.md | grep -q '^name: opendocs$'
+          head -n 1 /tmp/opendocs.sh | grep -q '^#!'
+          cp /tmp/SKILL.md skills/opendocs/SKILL.md
+          cp /tmp/opendocs.sh skills/opendocs/scripts/opendocs.sh
+          chmod +x skills/opendocs/scripts/opendocs.sh
+
+      - name: Commit if it changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "Skill is up to date."
+            exit 0
+          fi
+          jq '.version |= (split(".") | .[2] = ((.[2] | tonumber) + 1 | tostring) | join("."))' \
+            .claude-plugin/plugin.json > /tmp/plugin.json
+          mv /tmp/plugin.json .claude-plugin/plugin.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Sync skill from opendocs.cc ($(jq -r .version .claude-plugin/plugin.json))"
+          git push
