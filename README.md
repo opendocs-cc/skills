@@ -53,6 +53,15 @@ Ask your agent:
 
 The skill is synced every day from [opendocs.cc/skill.md](https://opendocs.cc/skill.md), which is published from the [CLI repository](https://github.com/opendocs-cc/opendocs-cli/blob/main/agent/SKILL.md). Send changes there.
 
+## Data and privacy
+
+The plugin is instructions plus the `opendocs` command-line tools; it doesn't run anything in the background. When you ask your agent to use it:
+
+- **What's sent, and where:** the Markdown documents you publish or export, and your email address when you sign in (to receive a sign-in code), go to OpenDocs at `api.opendocs.cc`. Nothing is sent to any other service.
+- **What's stored on your machine:** an OpenDocs API key and your account and workspace details, in the CLI's config file (`~/.config/opendocs/config.json`), plus a `.opendocs/state.json` file in folders you publish from, so publishing again updates the same document.
+- **What OpenDocs keeps:** your documents and their versions, until you delete them (anonymous documents are deleted after 24 hours). See the [privacy policy](https://opendocs.cc/privacy).
+- **Who can see it:** documents are visible to your workspace by default. The skill asks before making anything public.
+
 ## Links
 
 - Docs: [docs.opendocs.cc](https://docs.opendocs.cc)
