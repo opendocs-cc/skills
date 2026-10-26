@@ -7,17 +7,13 @@
 #
 #   openai/build.sh            # writes openai/dist/opendocs-cc-<version>.zip
 #
-# Reviewer credentials go in the portal's Review details, never in the ZIP.
+# Reviewer credentials and the demo video link go in the portal's Review
+# details, never in the ZIP: an upload overwrites what the portal has for
+# any review field the ZIP declares, and an empty one clears it.
 set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
 root="$(dirname "$here")"
-
-demo="$(jq -r '.extensions["com.openai"].review.demo_recording_url' "$here/plugin.json")"
-if [ -z "$demo" ] || [ "$demo" = "null" ]; then
-  echo "Set extensions.com.openai.review.demo_recording_url in openai/plugin.json first (a video reviewers can open)." >&2
-  exit 1
-fi
 
 version="$(jq -r .version "$here/plugin.json")"
 stage="$(mktemp -d)"
