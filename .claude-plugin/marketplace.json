@@ -1,13 +1,13 @@
 {
-  "name": "opendocs",
-  "description": "OpenDocs for Claude Code: publish Markdown to links and branded PDF or Word files.",
+  "name": "opendocs-cc",
+  "description": "OpenDocs.cc for Claude Code: publish Markdown to links and branded PDF or Word files.",
   "owner": {
     "name": "OpenDocs",
     "email": "hello@opendocs.cc"
   },
   "plugins": [
     {
-      "name": "opendocs",
+      "name": "opendocs-cc",
       "source": "./",
       "description": "Publish Markdown from your agent to shareable links, and export it as branded PDF or Word files."
     }

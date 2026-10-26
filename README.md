@@ -1,6 +1,6 @@
-# OpenDocs skill and Claude Code plugin
+# OpenDocs.cc skill and plugins
 
-[OpenDocs](https://opendocs.cc) gives your AI agent somewhere to put its Markdown: a clean link your team can read, and a PDF or Word file in your brand. This repository holds the OpenDocs agent skill and a Claude Code plugin around it.
+[OpenDocs.cc](https://opendocs.cc) gives your AI agent somewhere to put its Markdown: a clean link your team can read, and a PDF or Word file in your brand. This repository holds the OpenDocs agent skill and the OpenDocs.cc plugin for Claude Code and Codex, which bundles the skill with the OpenDocs MCP server.
 
 What your agent can do once it's installed:
 
@@ -13,11 +13,18 @@ Free for up to 50 documents. See [pricing](https://opendocs.cc/pricing).
 
 ## Install
 
-**Claude Code** (plugin, with `/opendocs:publish`, `/opendocs:export` and the OpenDocs MCP server):
+**Claude Code** (plugin, with `/opendocs-cc:publish`, `/opendocs-cc:export` and the OpenDocs MCP server):
 
 ```text
 /plugin marketplace add opendocs-cc/skills
-/plugin install opendocs@opendocs
+/plugin install opendocs-cc@opendocs-cc
+```
+
+**Codex** (plugin, with the skill and the OpenDocs MCP server):
+
+```bash
+codex plugin marketplace add opendocs-cc/skills
+codex plugin add opendocs-cc@opendocs-cc
 ```
 
 **Any agent that reads skills** (Claude Code, Codex, Cursor, OpenClaw and others), with the [skills CLI](https://skills.sh):
@@ -52,7 +59,10 @@ Ask your agent:
 | `skills/opendocs/scripts/opendocs.sh` | A `curl` + `jq` client for machines without Node.js |
 | `commands/` | The Claude Code slash commands |
 | `.mcp.json` | The OpenDocs MCP server (`https://mcp.opendocs.cc/mcp`), which Claude Code connects to with your OpenDocs sign-in |
-| `.claude-plugin/` | Plugin and marketplace manifests |
+| `.claude-plugin/` | Claude Code plugin and marketplace manifests |
+| `.codex-plugin/` | The Codex plugin manifest (same skill and MCP server) |
+| `assets/` | Icons for plugin listings |
+| `openai/` | The submission to OpenAI's plugin directory for ChatGPT and Codex: the MCP server only, with review test cases. `openai/build.sh` builds the ZIP |
 
 The skill is synced every day from [opendocs.cc/skill.md](https://opendocs.cc/skill.md), which is published from the [CLI repository](https://github.com/opendocs-cc/opendocs-cli/blob/main/agent/SKILL.md). Send changes there.
 
