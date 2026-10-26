@@ -1,0 +1,48 @@
+{
+  "name": "opendocs-cc",
+  "version": "1.2.0",
+  "description": "Publish Markdown to shareable links and export branded PDF or Word files, with the OpenDocs.cc MCP server and the OpenDocs skill.",
+  "author": {
+    "name": "OpenDocs",
+    "email": "hello@opendocs.cc",
+    "url": "https://opendocs.cc"
+  },
+  "homepage": "https://opendocs.cc",
+  "repository": "https://github.com/opendocs-cc/skills",
+  "license": "MIT",
+  "keywords": [
+    "markdown",
+    "publishing",
+    "pdf",
+    "docx",
+    "documents",
+    "sharing",
+    "export"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "OpenDocs.cc",
+    "shortDescription": "Markdown to shareable docs",
+    "longDescription": "OpenDocs.cc turns the Markdown your AI writes into documents people can read and use. Ask it to publish a plan, report or brief and you get a clean link your team can open; publishing again updates the same link and keeps every version. Export any document as a PDF or Word file in your workspace's brand: logo, colors and font. Find and read your documents, edit them, organize them into projects, share them with specific people or a whole email domain, and invite teammates. When the workspace has connected them, save files to its Google Drive folders and send documents for e-signature through DocuSeal. Sign in once with your OpenDocs account. It asks before making a document public or sending anything to other people.",
+    "developerName": "OpenDocs",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://opendocs.cc/mcp",
+    "supportURL": "https://opendocs.cc/faq",
+    "privacyPolicyURL": "https://opendocs.cc/privacy",
+    "termsOfServiceURL": "https://opendocs.cc/terms",
+    "defaultPrompt": [
+      "Publish this as an OpenDocs document and give me the link.",
+      "Export my latest OpenDocs document as a PDF.",
+      "Find the launch plan in OpenDocs and summarize it."
+    ],
+    "brandColor": "#7F56D9",
+    "composerIcon": "./assets/opendocs-small.svg",
+    "logo": "./assets/opendocs.png",
+    "screenshots": []
+  }
+}

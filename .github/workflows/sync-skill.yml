@@ -1,6 +1,6 @@
 # Keeps skills/opendocs in step with the skill opendocs.cc serves (which is
 # published from the CLI repository's agent/SKILL.md). When it changes, the
-# plugin's patch version goes up so Claude Code installs pick up the update.
+# plugin's patch version goes up so Claude Code and Codex installs pick up the update.
 name: Sync skill from opendocs.cc
 
 on:
@@ -37,9 +37,12 @@ jobs:
             echo "Skill is up to date."
             exit 0
           fi
-          jq '.version |= (split(".") | .[2] = ((.[2] | tonumber) + 1 | tostring) | join("."))' \
-            .claude-plugin/plugin.json > /tmp/plugin.json
-          mv /tmp/plugin.json .claude-plugin/plugin.json
+          # Claude Code and Codex read their own manifests; keep both on the same version.
+          for manifest in .claude-plugin/plugin.json .codex-plugin/plugin.json; do
+            jq '.version |= (split(".") | .[2] = ((.[2] | tonumber) + 1 | tostring) | join("."))' \
+              "$manifest" > /tmp/plugin.json
+            mv /tmp/plugin.json "$manifest"
+          done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "Sync skill from opendocs.cc ($(jq -r .version .claude-plugin/plugin.json))"
