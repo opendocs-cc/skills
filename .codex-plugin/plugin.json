@@ -1,6 +1,6 @@
 {
   "name": "opendocs-cc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Publish Markdown to shareable links and export branded PDF or Word files, with the OpenDocs.cc MCP server and the OpenDocs skill.",
   "author": {
     "name": "OpenDocs",
