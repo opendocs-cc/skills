@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
 # OpenDocs without Node.js: publish Markdown with curl + jq.
 #
 #   bash opendocs.sh login --email you@example.com          # emails a 6-digit code

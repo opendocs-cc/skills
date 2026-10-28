@@ -1,7 +1,7 @@
 {
   "name": "opendocs-cc",
   "displayName": "OpenDocs.cc",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Publish Markdown from your agent to shareable links, and export it as branded PDF or Word files. Includes the OpenDocs.cc MCP server: sign in once with your OpenDocs account.",
   "author": {
     "name": "OpenDocs",
